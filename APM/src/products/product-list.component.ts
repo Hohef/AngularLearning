@@ -1,5 +1,5 @@
 import { style } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { filter } from 'rxjs';
 import { IProduct } from './product';
 
@@ -92,5 +92,10 @@ export class ProductListComponent implements OnInit {
     performFilter(filterBy: string) : IProduct[] {
         filterBy = filterBy.toLocaleLowerCase();
         return this.products.filter( (product: IProduct) => product.productName.toLocaleLowerCase().includes(filterBy));
+    }
+
+    onRatingClicked(message: string): void {
+      this.pageTitle = 'Product List:' + message;
+      console.log(`Received Notify Event ${message}`);
     }
 }
